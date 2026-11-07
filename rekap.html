@@ -75,8 +75,8 @@ button{font-family:inherit;border:0;cursor:pointer;background:none;color:inherit
 <body>
 <div id="app"></div>
 <div class="toast" id="toast"></div>
-<script src="config.js"></script>
-<script src="api.js"></script>
+<script src="config.js?v=3"></script>
+<script src="api.js?v=3"></script>
 <script>
 const T=TOKO, rp=API.rp, $=s=>document.querySelector(s);
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -126,7 +126,7 @@ const aktif=()=>D.orders.filter(o=>!o.batal);
 function render(){
   const act_=aktif(), omzet=act_.reduce((a,o)=>a+Number(o.total),0), lunas=act_.filter(o=>o.lunas).reduce((a,o)=>a+Number(o.total),0);
   $('#app').innerHTML=`<header class="top"><div class="row"><h1>Rekap ${esc(D.poNama||'PO')}<small>${esc(T.nama)}</small></h1>
-  <button class="sw" id="sw">${D.open?'PO Buka':'PO Tutup'}<span class="tg ${D.open?'on':''}"></span></button><button class="ib" id="rf" aria-label="Muat ulang">⟳</button></div></header>
+  <button class="ib" id="rf" aria-label="Muat ulang">⟳</button></div></header>
   <main class="wrap">${API.DEMO?'<div class="demo">Mode coba: data cuma di HP ini.</div>':''}
   <div class="stats"><div class="st"><small>Pemesan</small><b>${act_.length}</b></div><div class="st"><small>Total pcs</small><b>${aggTotal(act_)}</b></div><div class="st"><small>Omzet</small><b style="font-size:14px">${rp(omzet)}</b></div></div>
   <div class="tabs"><button data-t="sup" class="${TAB==='sup'?'on':''}">📦 Supplier</button><button data-t="pem" class="${TAB==='pem'?'on':''}">👩 Pemesan</button></div>
@@ -135,7 +135,6 @@ function render(){
   <button class="btn g" id="baru">🌸 Mulai PO baru</button></div></main>`;
   document.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{TAB=b.dataset.t;render()});
   $('#rf').onclick=async()=>{toast('Memuat…');await load()};
-  $('#sw').onclick=()=>{if(confirm(D.open?'Tutup PO? Pembeli gak bisa pesan lagi.':'Buka PO lagi?'))act('buka',{val:!D.open},D.open?'PO ditutup':'PO dibuka')};
   $('#baru').onclick=()=>{const n=prompt('Nama PO baru (contoh: PO 21 Nov)','');if(n===null)return;if(confirm('Mulai PO baru? Rekap sekarang disimpan, halaman jadi kosong lagi.'))act('baru',{nama:n.trim()},'PO baru dimulai 🎉')};
   TAB==='sup'?sup(lunas,omzet):pem(lunas,omzet);
 }

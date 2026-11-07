@@ -103,13 +103,12 @@ input,textarea{font-family:inherit;font-size:15px}
 <body>
 <header class="top"><div class="row">
   <div class="logo">K</div>
-  <div class="brand"><b id="tnama">Cemilan Kriukkk</b><span class="st" id="hero"><span class="dot"></span><span id="postat">Memuat…</span></span></div>
+  <div class="brand"><b id="tnama">Cemilan Kriukkk</b><span class="st" id="hero"><span class="dot"></span><span id="postat">Ready stock</span></span></div>
   <button class="cartbtn" id="cartbtn" aria-label="Keranjang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M2.5 3h2.6l2.4 12.2a1.6 1.6 0 0 0 1.6 1.3h8.8a1.6 1.6 0 0 0 1.6-1.2L21.5 7H6"/></svg><span class="badge" id="badge" hidden>0</span></button>
 </div></header>
 <main class="wrap">
   <div id="manual" class="manual" hidden>✍️ Mode input manual — masukkan pesanan dari chat</div>
   <div id="demo" class="demo" hidden>Mode coba: pesanan cuma tersimpan di HP ini. Sambungkan ke Google Sheet biar beneran masuk.</div>
-  <div id="closed" class="closed" hidden><b>Lagi tutup dulu ya 🙏</b>Tunggu info berikutnya ya kak.</div>
   <div class="sec"><h2>Menu Favorit 🍿</h2><span id="cnt"></span></div>
   <div class="grid" id="grid"></div>
 </main>
@@ -123,13 +122,12 @@ input,textarea{font-family:inherit;font-size:15px}
 <div class="sheet" id="sheet"><div class="in" id="sheetin"></div></div>
 <div class="toast" id="toast"></div>
 
-<script src="config.js"></script>
-<script src="api.js"></script>
+<script src="config.js?v=3"></script>
+<script src="api.js?v=3"></script>
 <script>
 const T=TOKO, rp=API.rp, $=s=>document.querySelector(s);
 const MANUAL=location.hash==='#manual';
 let CART=[]; try{CART=JSON.parse(sessionStorage.getItem('kriuk_cart'))||[]}catch(e){}
-let OPEN=true;
 const saveCart=()=>{try{sessionStorage.setItem('kriuk_cart',JSON.stringify(CART))}catch(e){}};
 const P=id=>T.menu.find(m=>m.id===id);
 const key=(i)=>i.p+'|'+i.r+'|'+i.u;
@@ -147,7 +145,7 @@ function grid(){
     return `<button class="card" data-id="${m.id}"><div class="ph"><img src="${m.foto}" alt="${esc(m.nama)}" loading="lazy">${q?`<span class="qb">${q} di keranjang</span>`:''}</div>
     <div class="in"><div class="nm">${esc(m.nama)}</div><div class="rs">${m.rasa.map(esc).join(' · ')}</div>
     <div class="pr"><div><small>mulai</small><b>${rp(min)}</b></div><span class="add">+</span></div></div></button>`}).join('');
-  document.querySelectorAll('.card').forEach(c=>c.onclick=()=>OPEN||MANUAL?pick(c.dataset.id):toast('Lagi tutup dulu ya kak 🙏'));
+  document.querySelectorAll('.card').forEach(c=>c.onclick=()=>pick(c.dataset.id));
 }
 function bar(){
   const n=CART.reduce((a,i)=>a+i.q,0);
@@ -213,14 +211,7 @@ function done(id,nama,items){
   CART=[];FORM={nama:'',wa:'',catatan:''};saveCart();bar();grid();
   $('#lagi').onclick=close;
 }
-async function init(){
-  grid();bar();
-  const r=await API.call('info');
-  OPEN=r.ok!==false&&r.open!==false;
-  $('#postat').textContent=r.ok===false?'Gagal memuat status':(OPEN?'Ready · bisa pesan':'Lagi tutup dulu');
-  $('#hero').classList.toggle('tutup',!OPEN);
-  $('#closed').hidden=OPEN||MANUAL;
-}
+function init(){grid();bar()}
 init();
 </script>
 </body>
