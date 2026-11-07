@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Cemilan Kriukkk — Pesan PO</title>
+<title>Cemilan Kriukkk</title>
 <meta name="theme-color" content="#fff0f4">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
@@ -26,12 +26,13 @@ input,textarea{font-family:inherit;font-size:15px}
 .hero{margin:14px 16px 6px;border-radius:26px;padding:20px;background:linear-gradient(135deg,#ff8fb1 0%,#ffa8a8 55%,#ffcf9e 100%);color:#fff;box-shadow:0 10px 24px rgba(255,120,150,.28);position:relative;overflow:hidden}
 .hero h1{font-family:Fredoka;font-size:23px;line-height:1.15;font-weight:700;text-shadow:0 2px 0 rgba(200,60,100,.15)}.hero p{font-size:12.5px;opacity:.95;margin-top:4px}
 .hero .pill{display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:rgba(255,255,255,.28);padding:6px 12px;border-radius:20px;font-size:12px;font-weight:600}
-.dot{width:8px;height:8px;border-radius:50%;background:#3ddc84;box-shadow:0 0 0 3px rgba(61,220,132,.25)}
-.hero.tutup .dot{background:#ff5b5b;box-shadow:0 0 0 3px rgba(255,91,91,.25)}
+.dot{width:7px;height:7px;border-radius:50%;background:#3ddc84;box-shadow:0 0 0 3px rgba(61,220,132,.2);flex:none}
+.brand .st{display:flex;align-items:center;gap:7px;margin-top:3px}
+.st.tutup .dot{background:#ff5b5b;box-shadow:0 0 0 3px rgba(255,91,91,.25)}
 .hero img{position:absolute;right:-22px;bottom:-26px;width:128px;transform:rotate(-12deg);border-radius:50%;border:5px solid rgba(255,255,255,.7)}
 .hero::before{content:'♡';position:absolute;right:110px;top:10px;font-size:26px;opacity:.45}.hero::after{content:'✿';position:absolute;right:20px;top:14px;font-size:22px;opacity:.5}
 .demo{margin:8px 16px 0;background:#fff7d6;color:#7a5b00;border-radius:12px;padding:8px 12px;font-size:12px}
-.sec{display:flex;justify-content:space-between;align-items:baseline;margin:18px 16px 10px}.sec h2{font-family:Fredoka;font-weight:600;font-size:19px}.sec span{font-size:12px;color:var(--mut)}
+.sec{display:flex;justify-content:space-between;align-items:baseline;margin:16px 16px 10px}.sec h2{font-family:Fredoka;font-weight:600;font-size:19px}.sec span{font-size:12px;color:var(--mut)}
 /* grid */
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px}
 .card{background:var(--card);border-radius:22px;overflow:hidden;text-align:left;box-shadow:0 4px 14px rgba(255,107,152,.10);padding:8px;display:flex;flex-direction:column}
@@ -102,19 +103,13 @@ input,textarea{font-family:inherit;font-size:15px}
 <body>
 <header class="top"><div class="row">
   <div class="logo">K</div>
-  <div class="brand"><b id="tnama">Cemilan Kriukkk</b><span>cemilan kriuk bikin nagih 🎀</span></div>
+  <div class="brand"><b id="tnama">Cemilan Kriukkk</b><span class="st" id="hero"><span class="dot"></span><span id="postat">Memuat…</span></span></div>
   <button class="cartbtn" id="cartbtn" aria-label="Keranjang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M2.5 3h2.6l2.4 12.2a1.6 1.6 0 0 0 1.6 1.3h8.8a1.6 1.6 0 0 0 1.6-1.2L21.5 7H6"/></svg><span class="badge" id="badge" hidden>0</span></button>
 </div></header>
 <main class="wrap">
   <div id="manual" class="manual" hidden>✍️ Mode input manual — masukkan pesanan dari chat</div>
   <div id="demo" class="demo" hidden>Mode coba: pesanan cuma tersimpan di HP ini. Sambungkan ke Google Sheet biar beneran masuk.</div>
-  <section class="hero" id="hero">
-    <h1>Open PO Cemilan<br>Kriukkk ✨</h1>
-    <p>Pilih yang kamu suka, masukin keranjang, beres 💕</p>
-    <span class="pill"><span class="dot"></span><span id="postat">Memuat…</span></span>
-    <img src="img/basreng.png" alt="">
-  </section>
-  <div id="closed" class="closed" hidden><b>PO lagi tutup 🙏</b>Tunggu info PO berikutnya ya.</div>
+  <div id="closed" class="closed" hidden><b>Lagi tutup dulu ya 🙏</b>Tunggu info berikutnya ya kak.</div>
   <div class="sec"><h2>Menu Favorit 🍿</h2><span id="cnt"></span></div>
   <div class="grid" id="grid"></div>
 </main>
@@ -139,7 +134,7 @@ const saveCart=()=>{try{sessionStorage.setItem('kriuk_cart',JSON.stringify(CART)
 const P=id=>T.menu.find(m=>m.id===id);
 const key=(i)=>i.p+'|'+i.r+'|'+i.u;
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-document.title=T.nama+' — Pesan PO'; $('#tnama').textContent=T.nama;
+document.title=T.nama; $('#tnama').textContent=T.nama;
 if(API.DEMO) $('#demo').hidden=false;
 if(MANUAL) $('#manual').hidden=false;
 
@@ -152,7 +147,7 @@ function grid(){
     return `<button class="card" data-id="${m.id}"><div class="ph"><img src="${m.foto}" alt="${esc(m.nama)}" loading="lazy">${q?`<span class="qb">${q} di keranjang</span>`:''}</div>
     <div class="in"><div class="nm">${esc(m.nama)}</div><div class="rs">${m.rasa.map(esc).join(' · ')}</div>
     <div class="pr"><div><small>mulai</small><b>${rp(min)}</b></div><span class="add">+</span></div></div></button>`}).join('');
-  document.querySelectorAll('.card').forEach(c=>c.onclick=()=>OPEN||MANUAL?pick(c.dataset.id):toast('PO lagi tutup'));
+  document.querySelectorAll('.card').forEach(c=>c.onclick=()=>OPEN||MANUAL?pick(c.dataset.id):toast('Lagi tutup dulu ya kak 🙏'));
 }
 function bar(){
   const n=CART.reduce((a,i)=>a+i.q,0);
@@ -209,7 +204,7 @@ function cart(){
 $('#cartbtn').onclick=cart; $('#checkout').onclick=cart;
 function done(id,nama,items){
   const tot=items.reduce((a,i)=>a+i.h*i.q,0);
-  const teks=`Halo kak, saya *${nama}* sudah pesan PO ${T.nama} (kode ${id}):\n`+items.map(i=>`• ${i.n} ${i.r} ${i.u} x${i.q}`).join('\n')+`\nTotal: ${rp(tot)}`;
+  const teks=`Halo kak, saya *${nama}* sudah pesan di ${T.nama} (kode ${id}):\n`+items.map(i=>`• ${i.n} ${i.r} ${i.u} x${i.q}`).join('\n')+`\nTotal: ${rp(tot)}`;
   open(`<div class="done"><div class="ic">✓</div><div class="h3">Yeay, pesanan masuk! 🎉</div><div style="color:var(--mut);font-size:13px">Terima kasih, ${esc(nama)} 🙌</div>
   <div class="kode">${id}</div>
   <div class="rec">${items.map(i=>`${esc(i.n)} · ${esc(i.r)} · ${i.u} <b>x${i.q}</b>`).join('<br>')}<br><b>Total ${rp(tot)}</b></div>
@@ -222,7 +217,7 @@ async function init(){
   grid();bar();
   const r=await API.call('info');
   OPEN=r.ok!==false&&r.open!==false;
-  $('#postat').textContent=r.ok===false?'Gagal memuat status':(OPEN?(r.poNama||'PO')+' · Buka':'PO Tutup');
+  $('#postat').textContent=r.ok===false?'Gagal memuat status':(OPEN?'Ready · bisa pesan':'Lagi tutup dulu');
   $('#hero').classList.toggle('tutup',!OPEN);
   $('#closed').hidden=OPEN||MANUAL;
 }
