@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Cemilan Kriukkk — Pesan PO</title>
+<meta name="theme-color" content="#fff0f4">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff6f8;--card:#fff;--ink:#4a2a36;--mut:#a7818f;--line:#fbe1e8;--acc:#ff6b98;--acc2:#ffe8ef;--gold:#f7b2c4;--ok:#2fae6c;--soft:#fff0f4}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:Poppins,system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:14px;padding-bottom:90px}
+button{font-family:inherit;border:0;cursor:pointer;background:none;color:inherit}
+input,textarea{font-family:inherit;font-size:15px}
+.wrap{max-width:560px;margin:0 auto}
+/* header */
+.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:calc(10px + env(safe-area-inset-top)) 16px 10px}
+.top .row{display:flex;align-items:center;gap:12px;max-width:560px;margin:0 auto}
+.logo{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#ff8fb1,#ffb199);color:#fff;display:grid;place-items:center;font-family:Fredoka;font-weight:700;font-size:19px;box-shadow:0 4px 10px rgba(255,107,152,.3)}
+.brand{flex:1;min-width:0}.brand b{display:block;font-family:Fredoka;font-weight:600;font-size:18px;line-height:1.1;color:var(--acc)}.brand span{font-size:12px;color:var(--mut)}
+.cartbtn{position:relative;width:44px;height:44px;border-radius:50%;background:var(--acc2);color:var(--acc);display:grid;place-items:center}
+.cartbtn svg{width:22px;height:22px}
+.badge[hidden]{display:none}.badge{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;border-radius:10px;background:var(--acc);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;padding:0 5px;border:2px solid #fff}
+/* hero */
+.hero{margin:14px 16px 6px;border-radius:26px;padding:20px;background:linear-gradient(135deg,#ff8fb1 0%,#ffa8a8 55%,#ffcf9e 100%);color:#fff;box-shadow:0 10px 24px rgba(255,120,150,.28);position:relative;overflow:hidden}
+.hero h1{font-family:Fredoka;font-size:23px;line-height:1.15;font-weight:700;text-shadow:0 2px 0 rgba(200,60,100,.15)}.hero p{font-size:12.5px;opacity:.95;margin-top:4px}
+.hero .pill{display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:rgba(255,255,255,.28);padding:6px 12px;border-radius:20px;font-size:12px;font-weight:600}
+.dot{width:8px;height:8px;border-radius:50%;background:#3ddc84;box-shadow:0 0 0 3px rgba(61,220,132,.25)}
+.hero.tutup .dot{background:#ff5b5b;box-shadow:0 0 0 3px rgba(255,91,91,.25)}
+.hero img{position:absolute;right:-22px;bottom:-26px;width:128px;transform:rotate(-12deg);border-radius:50%;border:5px solid rgba(255,255,255,.7)}
+.hero::before{content:'♡';position:absolute;right:110px;top:10px;font-size:26px;opacity:.45}.hero::after{content:'✿';position:absolute;right:20px;top:14px;font-size:22px;opacity:.5}
+.demo{margin:8px 16px 0;background:#fff7d6;color:#7a5b00;border-radius:12px;padding:8px 12px;font-size:12px}
+.sec{display:flex;justify-content:space-between;align-items:baseline;margin:18px 16px 10px}.sec h2{font-family:Fredoka;font-weight:600;font-size:19px}.sec span{font-size:12px;color:var(--mut)}
+/* grid */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px}
+.card{background:var(--card);border-radius:22px;overflow:hidden;text-align:left;box-shadow:0 4px 14px rgba(255,107,152,.10);padding:8px;display:flex;flex-direction:column}
+.card .ph{aspect-ratio:1/1;background:var(--soft);position:relative;border-radius:16px;overflow:hidden}
+.card .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.card .in{padding:8px 4px 2px;display:flex;flex-direction:column;gap:2px;flex:1}
+.card .nm{font-weight:600;font-size:14px;line-height:1.25}
+.card .rs{font-size:11.5px;color:var(--mut);line-height:1.3}
+.card .pr{margin-top:auto;padding-top:8px;display:flex;align-items:center;justify-content:space-between}
+.card .pr b{color:var(--acc);font-size:14.5px}.card .pr small{display:block;font-size:10.5px;color:var(--mut);font-weight:500}
+.card .add{width:34px;height:34px;border-radius:50%;box-shadow:0 4px 10px rgba(255,107,152,.35);background:var(--acc);color:#fff;font-size:20px;font-weight:600;display:grid;place-items:center;line-height:1}
+.card .qb{position:absolute;top:8px;left:8px;background:var(--acc);color:#fff;border-radius:10px;font-size:11px;font-weight:700;padding:3px 8px}
+/* bottom bar */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:#fff;border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom))}
+.bar .row{max-width:560px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.bar .t{flex:1}.bar .t small{display:block;color:var(--mut);font-size:12px}.bar .t b{font-size:18px}
+.btn{background:linear-gradient(135deg,#ff6b98,#ff8f8f);color:#fff;font-weight:700;font-size:15px;border-radius:999px;padding:13px 24px;box-shadow:0 6px 14px rgba(255,107,152,.35)}
+.btn:disabled{background:#f0d9e0;box-shadow:none}
+.btn.full{width:100%}.btn.dark{background:var(--ink)}.btn.wa{background:#25d366}
+.btn.ghost{background:var(--acc2);color:var(--acc);box-shadow:none}
+.btn.wa{background:#25d366;box-shadow:0 6px 14px rgba(37,211,102,.3)}
+/* sheet */
+.ov{position:fixed;inset:0;background:rgba(20,16,12,.45);z-index:40;opacity:0;pointer-events:none;transition:.2s}
+.ov.on{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:50;background:#fff;border-radius:28px 28px 0 0;max-height:90vh;overflow:auto;transform:translateY(105%);transition:transform .25s ease;padding:8px 18px calc(18px + env(safe-area-inset-bottom))}
+.sheet.on{transform:none}
+.sheet .in{max-width:560px;margin:0 auto}
+.grab{width:42px;height:5px;border-radius:3px;background:var(--line);margin:4px auto 12px}
+.ph2{display:flex;gap:14px;align-items:center}
+.ph2 img{width:88px;height:88px;border-radius:50%;border:4px solid var(--acc2);object-fit:cover}
+.ph2 b{font-family:Fredoka;font-weight:600;font-size:19px;display:block}.ph2 span{color:var(--acc);font-weight:700;font-size:16px}
+.lbl{font-size:13px;font-weight:600;margin:16px 0 8px;color:var(--mut)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--line);border-radius:999px;padding:9px 14px;font-size:13px;font-weight:500;background:#fff}
+.chip.on{border-color:var(--acc);background:var(--acc2);color:var(--acc);font-weight:600}
+.chip small{display:block;font-size:11.5px;color:var(--mut);font-weight:500}
+.chip.on small{color:var(--acc)}
+.step{display:flex;align-items:center;gap:4px;background:var(--acc2);border-radius:999px;padding:4px}
+.step button{width:36px;height:36px;border-radius:50%;background:#fff;font-size:20px;font-weight:600;color:var(--acc)}
+.step span{min-width:34px;text-align:center;font-weight:700;font-size:16px}
+.qrow{display:flex;justify-content:space-between;align-items:center;margin-top:16px}
+.qrow .sub{font-size:13px;color:var(--mut)}.qrow .sub b{display:block;color:var(--ink);font-size:17px}
+/* cart */
+.ci{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.ci img{width:56px;height:56px;border-radius:50%;object-fit:cover}
+.ci .d{flex:1;min-width:0}.ci .d b{font-size:14px;display:block}.ci .d small{color:var(--mut);font-size:12px;display:block}.ci .d i{font-style:normal;color:var(--acc);font-weight:700;font-size:13.5px}
+.ci .step button{width:30px;height:30px;font-size:17px}.ci .step span{min-width:26px;font-size:14px}
+.f{margin-top:12px}.f label{font-size:13px;font-weight:600;display:block;margin-bottom:6px}
+.f input,.f textarea{width:100%;border:1.5px solid var(--line);border-radius:16px;color:var(--ink);padding:12px 14px;background:#fff;outline:none}
+.f input:focus,.f textarea:focus{border-color:var(--acc)}
+.sum{background:var(--soft);border-radius:18px;padding:12px 14px;margin-top:14px;display:flex;justify-content:space-between;align-items:center}
+.sum b{font-size:18px;color:var(--acc)}
+.err{color:#d33;font-size:12.5px;margin-top:8px;min-height:16px}
+.h3{font-family:Fredoka;font-size:21px;font-weight:600;margin-bottom:4px;color:var(--ink)}
+.empty{text-align:center;color:var(--mut);padding:30px 0}
+.done{text-align:center;padding:10px 0}
+.done .ic{width:68px;height:68px;border-radius:50%;background:#e7f7ee;color:var(--ok);display:grid;place-items:center;margin:6px auto 12px;font-size:34px;font-weight:700}
+.done .kode{display:inline-block;background:var(--acc2);color:var(--acc);font-weight:700;font-family:Fredoka;border-radius:999px;padding:6px 14px;margin:8px 0 14px;font-size:16px;letter-spacing:1px}
+.rec{text-align:left;background:var(--soft);border-radius:18px;padding:12px 14px;font-size:13px;line-height:1.6;margin-bottom:14px}
+.col{display:flex;flex-direction:column;gap:8px}
+.toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%) translateY(20px);background:var(--acc);border-radius:999px !important;color:#fff;padding:10px 16px;border-radius:12px;font-size:13px;opacity:0;transition:.2s;z-index:60;pointer-events:none;white-space:nowrap}
+.toast.on{opacity:1;transform:translateX(-50%)}
+.closed{margin:14px 16px;background:#fff;border-radius:22px;padding:22px;text-align:center;color:var(--mut)}
+.closed b{display:block;color:var(--ink);font-size:16px;margin-bottom:4px}
+.manual{margin:8px 16px 0;background:#e9f2ff;color:#1d4f91;border-radius:12px;padding:8px 12px;font-size:12px;font-weight:600}
+</style>
+</head>
+<body>
+<header class="top"><div class="row">
+  <div class="logo">K</div>
+  <div class="brand"><b id="tnama">Cemilan Kriukkk</b><span>cemilan kriuk bikin nagih 🎀</span></div>
+  <button class="cartbtn" id="cartbtn" aria-label="Keranjang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M2.5 3h2.6l2.4 12.2a1.6 1.6 0 0 0 1.6 1.3h8.8a1.6 1.6 0 0 0 1.6-1.2L21.5 7H6"/></svg><span class="badge" id="badge" hidden>0</span></button>
+</div></header>
+<main class="wrap">
+  <div id="manual" class="manual" hidden>✍️ Mode input manual — masukkan pesanan dari chat</div>
+  <div id="demo" class="demo" hidden>Mode coba: pesanan cuma tersimpan di HP ini. Sambungkan ke Google Sheet biar beneran masuk.</div>
+  <section class="hero" id="hero">
+    <h1>Open PO Cemilan<br>Kriukkk ✨</h1>
+    <p>Pilih yang kamu suka, masukin keranjang, beres 💕</p>
+    <span class="pill"><span class="dot"></span><span id="postat">Memuat…</span></span>
+    <img src="img/basreng.png" alt="">
+  </section>
+  <div id="closed" class="closed" hidden><b>PO lagi tutup 🙏</b>Tunggu info PO berikutnya ya.</div>
+  <div class="sec"><h2>Menu Favorit 🍿</h2><span id="cnt"></span></div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<div class="bar" id="bar"><div class="row">
+  <div class="t"><small id="bitems">Keranjang kosong</small><b id="btotal">Rp 0</b></div>
+  <button class="btn" id="checkout" disabled>Checkout</button>
+</div></div>
+
+<div class="ov" id="ov"></div>
+<div class="sheet" id="sheet"><div class="in" id="sheetin"></div></div>
+<div class="toast" id="toast"></div>
+
+<script src="config.js"></script>
+<script src="api.js"></script>
+<script>
+const T=TOKO, rp=API.rp, $=s=>document.querySelector(s);
+const MANUAL=location.hash==='#manual';
+let CART=[]; try{CART=JSON.parse(sessionStorage.getItem('kriuk_cart'))||[]}catch(e){}
+let OPEN=true;
+const saveCart=()=>{try{sessionStorage.setItem('kriuk_cart',JSON.stringify(CART))}catch(e){}};
+const P=id=>T.menu.find(m=>m.id===id);
+const key=(i)=>i.p+'|'+i.r+'|'+i.u;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+document.title=T.nama+' — Pesan PO'; $('#tnama').textContent=T.nama;
+if(API.DEMO) $('#demo').hidden=false;
+if(MANUAL) $('#manual').hidden=false;
+
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),1600)}
+function qtyOf(pid){return CART.filter(i=>i.p===pid).reduce((a,i)=>a+i.q,0)}
+function total(){return CART.reduce((a,i)=>a+i.q*i.h,0)}
+function grid(){
+  $('#cnt').textContent=T.menu.length+' produk';
+  $('#grid').innerHTML=T.menu.map(m=>{const q=qtyOf(m.id);const min=Math.min(...m.ukuran.map(u=>u[1]));
+    return `<button class="card" data-id="${m.id}"><div class="ph"><img src="${m.foto}" alt="${esc(m.nama)}" loading="lazy">${q?`<span class="qb">${q} di keranjang</span>`:''}</div>
+    <div class="in"><div class="nm">${esc(m.nama)}</div><div class="rs">${m.rasa.map(esc).join(' · ')}</div>
+    <div class="pr"><div><small>mulai</small><b>${rp(min)}</b></div><span class="add">+</span></div></div></button>`}).join('');
+  document.querySelectorAll('.card').forEach(c=>c.onclick=()=>OPEN||MANUAL?pick(c.dataset.id):toast('PO lagi tutup'));
+}
+function bar(){
+  const n=CART.reduce((a,i)=>a+i.q,0);
+  $('#badge').hidden=!n; $('#badge').textContent=n;
+  $('#bitems').textContent=n?n+' item di keranjang':'Keranjang kosong';
+  $('#btotal').textContent=rp(total()); $('#checkout').disabled=!n;
+}
+function open(html){$('#sheetin').innerHTML='<div class="grab"></div>'+html;$('#ov').classList.add('on');$('#sheet').classList.add('on')}
+function close(){$('#ov').classList.remove('on');$('#sheet').classList.remove('on')}
+$('#ov').onclick=close;
+
+// ---- pilih varian
+function pick(pid){
+  const m=P(pid); let r=m.rasa[0], u=m.ukuran[1]?1:0, q=1;
+  const draw=()=>{const h=m.ukuran[u][1];
+    open(`<div class="ph2"><img src="${m.foto}" alt=""><div><b>${esc(m.nama)}</b><span>${rp(h)}</span></div></div>
+    ${m.rasa.length>1?`<div class="lbl">Pilih rasa</div><div class="chips">${m.rasa.map((x,i)=>`<button class="chip ${x===r?'on':''}" data-r="${i}">${esc(x)}</button>`).join('')}</div>`:`<div class="lbl">Rasa</div><div class="chips"><span class="chip on">${esc(r)}</span></div>`}
+    <div class="lbl">Pilih ukuran</div><div class="chips">${m.ukuran.map((x,i)=>`<button class="chip ${i===u?'on':''}" data-u="${i}">${x[0]}<small>${rp(x[1])}</small></button>`).join('')}</div>
+    <div class="qrow"><div class="sub">Subtotal<b>${rp(h*q)}</b></div><div class="step"><button data-q="-1">−</button><span>${q}</span><button data-q="1">+</button></div></div>
+    <div style="margin-top:18px"><button class="btn full" id="addc">+ Masukkan Keranjang</button></div>`);
+    document.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{r=m.rasa[+b.dataset.r];draw()});
+    document.querySelectorAll('[data-u]').forEach(b=>b.onclick=()=>{u=+b.dataset.u;draw()});
+    document.querySelectorAll('[data-q]').forEach(b=>b.onclick=()=>{q=Math.max(1,q+ +b.dataset.q);draw()});
+    $('#addc').onclick=()=>{const it={p:m.id,n:m.nama,r,u:m.ukuran[u][0],h:m.ukuran[u][1],q};
+      const ex=CART.find(i=>key(i)===key(it)); if(ex) ex.q+=q; else CART.push(it);
+      saveCart();bar();grid();close();toast('Masuk keranjang 💕')};
+  }; draw();
+}
+// ---- keranjang + checkout
+let FORM={nama:'',wa:'',catatan:''};
+function cart(){
+  if(!CART.length){open('<div class="h3">Keranjang</div><div class="empty">Keranjang masih kosong</div><button class="btn full ghost" onclick="close()">Lihat produk</button>');return}
+  open(`<div class="h3">Keranjang</div>
+  ${CART.map((i,k)=>`<div class="ci"><img src="${P(i.p).foto}" alt=""><div class="d"><b>${esc(i.n)}</b><small>${esc(i.r)} · ${i.u}</small><i>${rp(i.h*i.q)}</i></div>
+  <div class="step"><button data-k="${k}" data-d="-1">${i.q>1?'−':'🗑'}</button><span>${i.q}</span><button data-k="${k}" data-d="1">+</button></div></div>`).join('')}
+  <div class="f"><label>Nama pemesan *</label><input id="fn" placeholder="contoh: Rina" value="${esc(FORM.nama)}" autocomplete="name"></div>
+  <div class="f"><label>No. WhatsApp <span style="color:var(--mut);font-weight:500">(opsional)</span></label><input id="fw" inputmode="tel" placeholder="08xxxxxxxxxx" value="${esc(FORM.wa)}"></div>
+  <div class="f"><label>Catatan <span style="color:var(--mut);font-weight:500">(opsional)</span></label><textarea id="fc" rows="2" placeholder="contoh: ambil hari Sabtu">${esc(FORM.catatan)}</textarea></div>
+  <div class="sum"><span>Total bayar</span><b>${rp(total())}</b></div>
+  <div class="err" id="err"></div>
+  <button class="btn full" id="kirim">Pesan Sekarang</button>`);
+  const keep=()=>{FORM={nama:$('#fn').value,wa:$('#fw').value,catatan:$('#fc').value}};
+  document.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{keep();const i=CART[+b.dataset.k];i.q+= +b.dataset.d;if(i.q<1)CART.splice(+b.dataset.k,1);saveCart();bar();grid();cart()});
+  $('#kirim').onclick=async()=>{
+    keep(); const nama=FORM.nama.trim();
+    if(!nama){$('#err').textContent='Isi nama pemesan dulu ya';$('#fn').focus();return}
+    const b=$('#kirim'); b.disabled=true; b.textContent='Mengirim…';
+    const items=CART.map(i=>({p:i.p,n:i.n,r:i.r,u:i.u,h:i.h,q:i.q}));
+    const res=await API.call('order',{nama,wa:FORM.wa.trim(),catatan:FORM.catatan.trim(),items,total:total(),sumber:MANUAL?'manual':'web'});
+    if(!res.ok){$('#err').textContent=res.msg||'Gagal mengirim';b.disabled=false;b.textContent='Pesan Sekarang';return}
+    done(res.id,nama,items);
+  };
+}
+$('#cartbtn').onclick=cart; $('#checkout').onclick=cart;
+function done(id,nama,items){
+  const tot=items.reduce((a,i)=>a+i.h*i.q,0);
+  const teks=`Halo kak, saya *${nama}* sudah pesan PO ${T.nama} (kode ${id}):\n`+items.map(i=>`• ${i.n} ${i.r} ${i.u} x${i.q}`).join('\n')+`\nTotal: ${rp(tot)}`;
+  open(`<div class="done"><div class="ic">✓</div><div class="h3">Yeay, pesanan masuk! 🎉</div><div style="color:var(--mut);font-size:13px">Terima kasih, ${esc(nama)} 🙌</div>
+  <div class="kode">${id}</div>
+  <div class="rec">${items.map(i=>`${esc(i.n)} · ${esc(i.r)} · ${i.u} <b>x${i.q}</b>`).join('<br>')}<br><b>Total ${rp(tot)}</b></div>
+  <div class="col">${T.waPenjual&&!MANUAL?`<a class="btn full wa" style="text-decoration:none;text-align:center" target="_blank" rel="noopener" href="https://wa.me/${T.waPenjual}?text=${encodeURIComponent(teks)}">Konfirmasi via WhatsApp</a>`:''}
+  <button class="btn full ghost" id="lagi">${MANUAL?'Input pesanan berikutnya':'Selesai'}</button></div></div>`);
+  CART=[];FORM={nama:'',wa:'',catatan:''};saveCart();bar();grid();
+  $('#lagi').onclick=close;
+}
+async function init(){
+  grid();bar();
+  const r=await API.call('info');
+  OPEN=r.ok!==false&&r.open!==false;
+  $('#postat').textContent=r.ok===false?'Gagal memuat status':(OPEN?(r.poNama||'PO')+' · Buka':'PO Tutup');
+  $('#hero').classList.toggle('tutup',!OPEN);
+  $('#closed').hidden=OPEN||MANUAL;
+}
+init();
+</script>
+</body>
+</html>

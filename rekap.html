@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Rekap PO — Cemilan Kriukkk</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#fff0f4">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff6f8;--card:#fff;--ink:#4a2a36;--mut:#a7818f;--line:#fbe1e8;--acc:#ff6b98;--acc2:#ffe8ef;--ok:#2fae6c;--ok2:#e6f7ee;--soft:#fff0f4;--blue:#5b8def;--blue2:#e9f0ff}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:Poppins,system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:14px;padding-bottom:40px}
+button{font-family:inherit;border:0;cursor:pointer;background:none;color:inherit}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px}
+.fd{font-family:Fredoka,Poppins,sans-serif}
+.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:calc(10px + env(safe-area-inset-top)) 16px 10px}
+.top .row{max-width:560px;margin:0 auto;display:flex;align-items:center;gap:10px}
+.top h1{flex:1;font-family:Fredoka;font-weight:600;font-size:19px;color:var(--acc);line-height:1.1}
+.top h1 small{display:block;font-family:Poppins;font-size:12px;color:var(--mut);font-weight:500}
+.ib{width:40px;height:40px;border-radius:50%;background:var(--acc2);color:var(--acc);display:grid;place-items:center;font-size:18px}
+.sw{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:5px 6px 5px 12px;font-size:12px;font-weight:600}
+.tg{width:42px;height:24px;border-radius:12px;background:#e8cfd7;position:relative;transition:.2s}
+.tg::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.tg.on{background:var(--ok)}.tg.on::after{left:21px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}
+.st{background:#fff;border-radius:18px;padding:12px;box-shadow:0 4px 14px rgba(255,107,152,.08)}
+.st small{display:block;font-size:11px;color:var(--mut);font-weight:500}.st b{font-size:17px;font-family:Fredoka;font-weight:600}
+.tabs{display:flex;background:var(--acc2);border-radius:999px;padding:4px;margin-bottom:12px}
+.tabs button{flex:1;padding:10px;border-radius:999px;font-weight:600;font-size:13.5px;color:var(--mut)}
+.tabs button.on{background:#fff;color:var(--acc);box-shadow:0 2px 8px rgba(255,107,152,.15)}
+.box{background:#fff;border-radius:22px;padding:16px;margin-bottom:12px;box-shadow:0 4px 14px rgba(255,107,152,.08)}
+.box.new{border:2px solid var(--acc)}
+.bh{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+.bh b{font-family:Fredoka;font-weight:600;font-size:16.5px}
+.tag{font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--acc2);color:var(--acc);white-space:nowrap}
+.tag.ok{background:var(--ok2);color:var(--ok)}.tag.bl{background:var(--blue2);color:var(--blue)}
+.grp{margin-top:8px}.grp>div:first-child{font-weight:600;font-size:13.5px}
+.ln{display:flex;justify-content:space-between;font-size:13px;padding:3px 0 3px 10px;color:#6d4a57}
+.ln b{color:var(--ink)}
+.tot{display:flex;justify-content:space-between;border-top:1.5px dashed var(--line);margin-top:10px;padding-top:10px;font-weight:700}
+.acts{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.btn{flex:1;min-width:130px;background:linear-gradient(135deg,#ff6b98,#ff8f8f);color:#fff;font-weight:700;font-size:13.5px;border-radius:999px;padding:12px 14px;box-shadow:0 6px 14px rgba(255,107,152,.3)}
+.btn.g{background:var(--acc2);color:var(--acc);box-shadow:none}.btn.ok{background:var(--ok);box-shadow:0 6px 14px rgba(47,174,108,.3)}
+.btn.b{background:var(--blue2);color:var(--blue);box-shadow:none}
+.btn:disabled{opacity:.5}
+.empty{color:var(--mut);font-size:13px;text-align:center;padding:8px 0}
+.od{background:#fff;border-radius:20px;padding:14px;margin-bottom:10px;box-shadow:0 4px 14px rgba(255,107,152,.08)}
+.od.batal{opacity:.45}
+.od .h{display:flex;align-items:center;gap:8px}.od .h b{flex:1;font-size:15px}
+.od .h b small{font-size:11.5px;color:var(--mut);font-weight:500;margin-left:4px}
+.od .it{font-size:12.8px;color:#6d4a57;margin:8px 0;line-height:1.55}
+.od .ft{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.od .ft .rp{flex:1;font-weight:700;color:var(--acc)}
+.pb{font-size:11.5px;font-weight:600;padding:6px 11px;border-radius:999px;border:1.5px solid var(--line);background:#fff}
+.pb.on{background:var(--ok2);border-color:var(--ok);color:var(--ok)}
+.pb.x{color:#c4485f}
+.od .meta{font-size:11.5px;color:var(--mut);margin-top:6px}
+.login{max-width:340px;margin:80px auto 0;text-align:center;padding:0 16px}
+.login .lg{width:74px;height:74px;border-radius:50%;margin:0 auto 14px;background:linear-gradient(135deg,#ff8fb1,#ffb199);display:grid;place-items:center;color:#fff;font-family:Fredoka;font-size:34px;font-weight:700;box-shadow:0 8px 20px rgba(255,107,152,.35)}
+.login h2{font-family:Fredoka;font-weight:600;font-size:22px}
+.login p{color:var(--mut);font-size:13px;margin:4px 0 18px}
+.login input{width:100%;font-family:inherit;font-size:22px;letter-spacing:8px;text-align:center;border:2px solid var(--line);border-radius:18px;padding:12px;outline:none;margin-bottom:12px;color:var(--ink)}
+.login input:focus{border-color:var(--acc)}
+.login .btn{width:100%}
+.err{color:#d33;font-size:12.5px;min-height:18px;margin-top:8px}
+.toast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;font-size:13px;opacity:0;transition:.2s;z-index:60;pointer-events:none;white-space:nowrap}
+.toast.on{opacity:1;transform:translateX(-50%)}
+.foot{display:flex;flex-direction:column;gap:8px;margin-top:18px}
+.demo{background:#fff7d6;color:#7a5b00;border-radius:12px;padding:8px 12px;font-size:12px;margin-top:12px}
+.srch{width:100%;font-family:inherit;font-size:14px;border:1.5px solid var(--line);border-radius:999px;padding:10px 16px;outline:none;margin-bottom:10px;background:#fff;color:var(--ink)}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div class="toast" id="toast"></div>
+<script src="config.js"></script>
+<script src="api.js"></script>
+<script>
+const T=TOKO, rp=API.rp, $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let PIN=''; try{PIN=sessionStorage.getItem('kriuk_pin')||''}catch(e){}
+let D=null, TAB='sup', Q='';
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),1800)}
+async function copy(txt){
+  try{await navigator.clipboard.writeText(txt);toast('Tersalin ✓ tinggal paste');return}catch(e){}
+  const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();
+  try{document.execCommand('copy');toast('Tersalin ✓ tinggal paste')}catch(e){toast('Gagal copy, tahan & salin manual')}ta.remove();
+}
+// ---------- login
+function login(msg){
+  $('#app').innerHTML=`<div class="login"><div class="lg">K</div><h2>Rekap Pesanan</h2><p>${esc(T.nama)} · khusus admin</p>
+  <input id="pin" type="password" inputmode="numeric" placeholder="PIN" maxlength="12"><button class="btn" id="go">Masuk</button><div class="err">${esc(msg||'')}</div>
+  ${API.DEMO?'<div class="demo">Mode coba · PIN: 1234</div>':''}</div>`;
+  const go=async()=>{PIN=$('#pin').value.trim();if(!PIN)return;$('#go').disabled=true;$('#go').textContent='Memuat…';const ok=await load();if(!ok){PIN='';login('PIN salah / koneksi gagal')}};
+  $('#go').onclick=go;$('#pin').onkeydown=e=>{if(e.key==='Enter')go()};$('#pin').focus();
+}
+async function load(){
+  const r=await API.call('list',{pin:PIN});
+  if(!r.ok) return false;
+  try{sessionStorage.setItem('kriuk_pin',PIN)}catch(e){}
+  D=r; render(); return true;
+}
+async function act(a,p,msg){const r=await API.call(a,Object.assign({pin:PIN},p||{}));if(!r.ok){toast(r.msg||'Gagal');return r}if(msg)toast(msg);await load();return r}
+// ---------- rekap helpers
+const ORD=T.menu.map(m=>m.id);
+function agg(orders){
+  const m={};
+  orders.forEach(o=>o.items.forEach(i=>{const k=i.p+'|'+i.r+'|'+i.u;(m[k]=m[k]||{p:i.p,n:i.n,r:i.r,u:i.u,q:0}).q+=Number(i.q)}));
+  const arr=Object.values(m);
+  const mi=p=>{const x=T.menu.find(z=>z.id===p);return x};
+  arr.sort((a,b)=>ORD.indexOf(a.p)-ORD.indexOf(b.p)||(mi(a.p)?mi(a.p).rasa.indexOf(a.r)-mi(b.p).rasa.indexOf(b.r):0)||(mi(a.p)?mi(a.p).ukuran.findIndex(u=>u[0]===a.u)-mi(b.p).ukuran.findIndex(u=>u[0]===b.u):0));
+  const g={};arr.forEach(x=>(g[x.n]=g[x.n]||[]).push(x));
+  return {g,pcs:arr.reduce((a,x)=>a+x.q,0)};
+}
+function aggHtml(a){
+  const ks=Object.keys(a.g); if(!ks.length) return '<div class="empty">Belum ada pesanan 🌸</div>';
+  return ks.map(n=>`<div class="grp"><div>${esc(n)}</div>${a.g[n].map(x=>`<div class="ln"><span>${esc(x.r)} · ${esc(x.u)}</span><b>${x.q} pcs</b></div>`).join('')}</div>`).join('')+`<div class="tot"><span>Total</span><span>${a.pcs} pcs</span></div>`;
+}
+function aggText(a,judul){
+  return `*${judul}*\n`+Object.keys(a.g).map(n=>`\n${n}\n`+a.g[n].map(x=>`- ${x.r} ${x.u} : ${x.q}`).join('\n')).join('\n')+`\n\nTotal: ${a.pcs} pcs`;
+}
+const aktif=()=>D.orders.filter(o=>!o.batal);
+// ---------- render
+function render(){
+  const act_=aktif(), omzet=act_.reduce((a,o)=>a+Number(o.total),0), lunas=act_.filter(o=>o.lunas).reduce((a,o)=>a+Number(o.total),0);
+  $('#app').innerHTML=`<header class="top"><div class="row"><h1>Rekap ${esc(D.poNama||'PO')}<small>${esc(T.nama)}</small></h1>
+  <button class="sw" id="sw">${D.open?'PO Buka':'PO Tutup'}<span class="tg ${D.open?'on':''}"></span></button><button class="ib" id="rf" aria-label="Muat ulang">⟳</button></div></header>
+  <main class="wrap">${API.DEMO?'<div class="demo">Mode coba: data cuma di HP ini.</div>':''}
+  <div class="stats"><div class="st"><small>Pemesan</small><b>${act_.length}</b></div><div class="st"><small>Total pcs</small><b>${aggTotal(act_)}</b></div><div class="st"><small>Omzet</small><b style="font-size:14px">${rp(omzet)}</b></div></div>
+  <div class="tabs"><button data-t="sup" class="${TAB==='sup'?'on':''}">📦 Supplier</button><button data-t="pem" class="${TAB==='pem'?'on':''}">👩 Pemesan</button></div>
+  <div id="body"></div>
+  <div class="foot"><a class="btn b" style="text-align:center;text-decoration:none" href="index.html#manual" target="_blank" rel="noopener">✍️ Input pesanan dari chat</a>
+  <button class="btn g" id="baru">🌸 Mulai PO baru</button></div></main>`;
+  document.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{TAB=b.dataset.t;render()});
+  $('#rf').onclick=async()=>{toast('Memuat…');await load()};
+  $('#sw').onclick=()=>{if(confirm(D.open?'Tutup PO? Pembeli gak bisa pesan lagi.':'Buka PO lagi?'))act('buka',{val:!D.open},D.open?'PO ditutup':'PO dibuka')};
+  $('#baru').onclick=()=>{const n=prompt('Nama PO baru (contoh: PO 21 Nov)','');if(n===null)return;if(confirm('Mulai PO baru? Rekap sekarang disimpan, halaman jadi kosong lagi.'))act('baru',{nama:n.trim()},'PO baru dimulai 🎉')};
+  TAB==='sup'?sup(lunas,omzet):pem(lunas,omzet);
+}
+function aggTotal(os){return os.reduce((a,o)=>a+o.items.reduce((b,i)=>b+Number(i.q),0),0)}
+function sup(){
+  const act_=aktif(); const baru=act_.filter(o=>!Number(o.kirim)); const nMax=Math.max(0,...act_.map(o=>Number(o.kirim)||0));
+  const aB=agg(baru), nNext=nMax+1;
+  let h=`<div class="box new"><div class="bh"><b>🆕 ${nMax?'Tambahan baru':'Pesanan baru'}</b><span class="tag">${baru.length} pemesan · belum dikirim</span></div>${aggHtml(aB)}
+  ${baru.length?`<div class="acts"><button class="btn" id="cpB">📋 Copy buat supplier</button><button class="btn ok" id="mk">✓ Tandai sudah dikirim</button></div>`:''}</div>`;
+  for(let n=nMax;n>=1;n--){const os=act_.filter(o=>Number(o.kirim)===n);if(!os.length)continue;
+    h+=`<div class="box"><div class="bh"><b>✅ Kirim #${n}</b><span class="tag ok">${os.length} pemesan · sudah dikirim</span></div>${aggHtml(agg(os))}<div class="acts"><button class="btn g" data-cp="${n}">📋 Copy lagi</button></div></div>`}
+  if(nMax){h+=`<div class="box"><div class="bh"><b>🧾 Total semua</b><span class="tag bl">${act_.length} pemesan</span></div>${aggHtml(agg(act_))}<div class="acts"><button class="btn g" id="cpAll">📋 Copy total semua</button></div></div>`}
+  $('#body').innerHTML=h;
+  const judul=(t)=>`${D.poNama||'PO'} ${T.nama}${t?' – '+t:''}`;
+  if($('#cpB')) $('#cpB').onclick=()=>copy(aggText(aB,judul(nMax?`Tambahan (Kirim #${nNext})`:'')));
+  if($('#mk')) $('#mk').onclick=()=>{if(confirm(`Tandai ${baru.length} pesanan ini sudah dikirim ke supplier (Kirim #${nNext})?`))act('kirim',{},`Tersimpan sebagai Kirim #${nNext} ✓`)};
+  document.querySelectorAll('[data-cp]').forEach(b=>b.onclick=()=>{const n=+b.dataset.cp;copy(aggText(agg(act_.filter(o=>Number(o.kirim)===n)),judul(n>1?`Tambahan (Kirim #${n})`:'')))});
+  if($('#cpAll')) $('#cpAll').onclick=()=>copy(aggText(agg(act_),judul('Total semua')));
+}
+function pem(lunas,omzet){
+  const os=D.orders.slice().reverse().filter(o=>!Q||(o.nama+' '+o.id).toLowerCase().includes(Q.toLowerCase()));
+  const act_=aktif();
+  let h=`<div class="box"><div class="bh"><b>💰 Pembayaran</b><span class="tag ok">${act_.filter(o=>o.lunas).length}/${act_.length} lunas</span></div>
+  <div class="ln" style="padding-left:0"><span>Sudah bayar</span><b>${rp(lunas)}</b></div><div class="ln" style="padding-left:0"><span>Belum bayar</span><b style="color:var(--acc)">${rp(omzet-lunas)}</b></div>
+  <div class="acts"><button class="btn" id="cpP">📋 Copy daftar pemesan</button><button class="btn g" id="cpU">📋 Copy yang belum bayar</button></div></div>
+  <input class="srch" id="q" placeholder="Cari nama / kode…" value="${esc(Q)}">`;
+  h+=os.length?os.map(o=>`<div class="od ${o.batal?'batal':''}"><div class="h"><b>${esc(o.nama)}<small>${esc(o.id)}${o.sumber==='manual'?' · dari chat':''}</small></b>
+    ${o.batal?'<span class="tag">batal</span>':Number(o.kirim)?`<span class="tag ok">Kirim #${o.kirim}</span>`:'<span class="tag">baru</span>'}</div>
+    <div class="it">${o.items.map(i=>`• ${esc(i.n)} ${esc(i.r)} ${esc(i.u)} <b>x${i.q}</b>`).join('<br>')}</div>
+    <div class="ft"><span class="rp">${rp(o.total)}</span>
+    ${o.batal?`<button class="pb" data-b="${o.id}" data-v="0">Pulihkan</button>`:`<button class="pb ${o.lunas?'on':''}" data-l="${o.id}" data-v="${o.lunas?0:1}">${o.lunas?'✓ Lunas':'Belum bayar'}</button><button class="pb x" data-b="${o.id}" data-v="1">Batal</button>`}</div>
+    <div class="meta">${new Date(o.waktu).toLocaleString('id-ID',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}${o.wa?` · <a href="https://wa.me/${esc(String(o.wa).replace(/\D/g,'').replace(/^0/,'62'))}" target="_blank" rel="noopener" style="color:var(--ok)">WA ${esc(o.wa)}</a>`:''}${o.catatan?` · 📝 ${esc(o.catatan)}`:''}</div></div>`).join(''):'<div class="empty">Belum ada pesanan 🌸</div>';
+  $('#body').innerHTML=h;
+  $('#q').oninput=e=>{Q=e.target.value;const p=e.target.selectionStart;pem(lunas,omzet);const q=$('#q');q.focus();q.setSelectionRange(p,p)};
+  const list=(arr,j)=>`*${j}*\n\n`+arr.map((o,k)=>`${k+1}. ${o.nama} (${o.id}) – ${rp(o.total)}${o.lunas?' ✅':''}\n`+o.items.map(i=>`   • ${i.n} ${i.r} ${i.u} x${i.q}`).join('\n')).join('\n')+`\n\nTotal: ${arr.length} pemesan · ${rp(arr.reduce((a,o)=>a+Number(o.total),0))}`;
+  $('#cpP').onclick=()=>copy(list(act_,`Daftar Pemesan ${D.poNama||'PO'} – ${T.nama}`));
+  $('#cpU').onclick=()=>copy(list(act_.filter(o=>!o.lunas),`Belum Bayar – ${D.poNama||'PO'}`));
+  document.querySelectorAll('[data-l]').forEach(b=>b.onclick=()=>act('lunas',{id:b.dataset.l,val:b.dataset.v==='1'},b.dataset.v==='1'?'Ditandai lunas ✓':'Ditandai belum bayar'));
+  document.querySelectorAll('[data-b]').forEach(b=>b.onclick=()=>{if(b.dataset.v==='0'||confirm('Batalkan pesanan ini?'))act('batal',{id:b.dataset.b,val:b.dataset.v==='1'},b.dataset.v==='1'?'Pesanan dibatalkan':'Pesanan dipulihkan')});
+}
+(async()=>{if(PIN&&await load())return;login()})();
+setInterval(()=>{if(D&&!document.hidden&&document.activeElement.tagName!=='INPUT')load()},30000);
+</script>
+</body>
+</html>
