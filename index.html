@@ -35,10 +35,11 @@ input,textarea{font-family:inherit;font-size:15px}
 .sec{display:flex;justify-content:space-between;align-items:baseline;margin:16px 16px 10px}.sec h2{font-family:Fredoka;font-weight:600;font-size:19px}.sec span{font-size:12px;color:var(--mut)}
 /* grid */
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px}
-.card{background:var(--card);border-radius:22px;overflow:hidden;text-align:left;box-shadow:0 4px 14px rgba(255,107,152,.10);padding:8px;display:flex;flex-direction:column}
-.card .ph{aspect-ratio:1/1;background:var(--soft);position:relative;border-radius:16px;overflow:hidden}
+.card{background:var(--card);border-radius:18px;overflow:hidden;text-align:left;box-shadow:0 4px 14px rgba(255,107,152,.10);padding:0;display:flex;flex-direction:column}
+.card .ph{aspect-ratio:1/1;background:#fff;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
 .card .ph img{width:100%;height:100%;object-fit:cover;display:block}
-.card .in{padding:8px 4px 2px;display:flex;flex-direction:column;gap:2px;flex:1}
+.card .ph img[src$=".png"]{object-fit:contain}
+.card .in{padding:10px 12px 12px;display:flex;flex-direction:column;gap:2px;flex:1}
 .card .nm{font-weight:600;font-size:14px;line-height:1.25}
 .card .rs{font-size:11.5px;color:var(--mut);line-height:1.3}
 .card .pr{margin-top:auto;padding-top:8px;display:flex;align-items:center;justify-content:space-between}
@@ -62,7 +63,7 @@ input,textarea{font-family:inherit;font-size:15px}
 .sheet .in{max-width:560px;margin:0 auto}
 .grab{width:42px;height:5px;border-radius:3px;background:var(--line);margin:4px auto 12px}
 .ph2{display:flex;gap:14px;align-items:center}
-.ph2 img{width:88px;height:88px;border-radius:50%;border:4px solid var(--acc2);object-fit:cover}
+.ph2 img{width:104px;height:104px;border-radius:18px;background:#fff;object-fit:cover;object-fit:cover}
 .ph2 b{font-family:Fredoka;font-weight:600;font-size:19px;display:block}.ph2 span{color:var(--acc);font-weight:700;font-size:16px}
 .lbl{font-size:13px;font-weight:600;margin:16px 0 8px;color:var(--mut)}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
@@ -77,7 +78,7 @@ input,textarea{font-family:inherit;font-size:15px}
 .qrow .sub{font-size:13px;color:var(--mut)}.qrow .sub b{display:block;color:var(--ink);font-size:17px}
 /* cart */
 .ci{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
-.ci img{width:56px;height:56px;border-radius:50%;object-fit:cover}
+.ci img{width:60px;height:60px;border-radius:12px;background:#fff;object-fit:cover;object-fit:cover}
 .ci .d{flex:1;min-width:0}.ci .d b{font-size:14px;display:block}.ci .d small{color:var(--mut);font-size:12px;display:block}.ci .d i{font-style:normal;color:var(--acc);font-weight:700;font-size:13.5px}
 .ci .step button{width:30px;height:30px;font-size:17px}.ci .step span{min-width:26px;font-size:14px}
 .f{margin-top:12px}.f label{font-size:13px;font-weight:600;display:block;margin-bottom:6px}
@@ -122,7 +123,7 @@ input,textarea{font-family:inherit;font-size:15px}
 <div class="sheet" id="sheet"><div class="in" id="sheetin"></div></div>
 <div class="toast" id="toast"></div>
 
-<script src="config.js?v=3"></script>
+<script src="config.js?v=5"></script>
 <script src="api.js?v=3"></script>
 <script>
 const T=TOKO, rp=API.rp, $=s=>document.querySelector(s);
@@ -130,6 +131,7 @@ const MANUAL=location.hash==='#manual';
 let CART=[]; try{CART=JSON.parse(sessionStorage.getItem('kriuk_cart'))||[]}catch(e){}
 const saveCart=()=>{try{sessionStorage.setItem('kriuk_cart',JSON.stringify(CART))}catch(e){}};
 const P=id=>T.menu.find(m=>m.id===id);
+const fotoOf=(m,r,u)=>(m.fotoUkuran&&m.fotoUkuran[u])||(m.fotoRasa&&m.fotoRasa[r])||m.foto;
 const key=(i)=>i.p+'|'+i.r+'|'+i.u;
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 document.title=T.nama; $('#tnama').textContent=T.nama;
@@ -161,7 +163,7 @@ $('#ov').onclick=close;
 function pick(pid){
   const m=P(pid); let r=m.rasa[0], u=m.ukuran[1]?1:0, q=1;
   const draw=()=>{const h=m.ukuran[u][1];
-    open(`<div class="ph2"><img src="${m.foto}" alt=""><div><b>${esc(m.nama)}</b><span>${rp(h)}</span></div></div>
+    open(`<div class="ph2"><img src="${fotoOf(m,r,m.ukuran[u][0])}" alt=""><div><b>${esc(m.nama)}</b><span>${rp(h)}</span></div></div>
     ${m.rasa.length>1?`<div class="lbl">Pilih rasa</div><div class="chips">${m.rasa.map((x,i)=>`<button class="chip ${x===r?'on':''}" data-r="${i}">${esc(x)}</button>`).join('')}</div>`:`<div class="lbl">Rasa</div><div class="chips"><span class="chip on">${esc(r)}</span></div>`}
     <div class="lbl">Pilih ukuran</div><div class="chips">${m.ukuran.map((x,i)=>`<button class="chip ${i===u?'on':''}" data-u="${i}">${x[0]}<small>${rp(x[1])}</small></button>`).join('')}</div>
     <div class="qrow"><div class="sub">Subtotal<b>${rp(h*q)}</b></div><div class="step"><button data-q="-1">−</button><span>${q}</span><button data-q="1">+</button></div></div>
@@ -179,7 +181,7 @@ let FORM={nama:'',wa:'',catatan:''};
 function cart(){
   if(!CART.length){open('<div class="h3">Keranjang</div><div class="empty">Keranjang masih kosong</div><button class="btn full ghost" onclick="close()">Lihat produk</button>');return}
   open(`<div class="h3">Keranjang</div>
-  ${CART.map((i,k)=>`<div class="ci"><img src="${P(i.p).foto}" alt=""><div class="d"><b>${esc(i.n)}</b><small>${esc(i.r)} · ${i.u}</small><i>${rp(i.h*i.q)}</i></div>
+  ${CART.map((i,k)=>`<div class="ci"><img src="${fotoOf(P(i.p),i.r,i.u)}" alt=""><div class="d"><b>${esc(i.n)}</b><small>${esc(i.r)} · ${i.u}</small><i>${rp(i.h*i.q)}</i></div>
   <div class="step"><button data-k="${k}" data-d="-1">${i.q>1?'−':'🗑'}</button><span>${i.q}</span><button data-k="${k}" data-d="1">+</button></div></div>`).join('')}
   <div class="f"><label>Nama pemesan *</label><input id="fn" placeholder="contoh: Rina" value="${esc(FORM.nama)}" autocomplete="name"></div>
   <div class="f"><label>No. WhatsApp <span style="color:var(--mut);font-weight:500">(opsional)</span></label><input id="fw" inputmode="tel" placeholder="08xxxxxxxxxx" value="${esc(FORM.wa)}"></div>
